@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getTableById } from '../../../redux/tablesRedux';
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 
 
 const TablePage = () => {
@@ -10,7 +10,7 @@ const TablePage = () => {
   const tableData = useSelector((state) => getTableById(state, tableId));
 
 
-  if (!tableData) return <Redirect to="/" />
+  if (!tableData) return <Navigate to="/" />
 
   return (
     <div className='table-page'>

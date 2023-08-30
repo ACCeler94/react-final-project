@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Homepage from './components/views/Homepage/Homepage';
 import { Container } from 'react-bootstrap';
@@ -15,15 +15,13 @@ function App() {
 
 
   return (
-    <BrowserRouter>
-      <Container>
-        <Header />
-        <Switch>
-          <Route exact path={'/'} component={Homepage} />
-          <Route exact path={'/:tableId'} component={TablePage} />
-        </Switch>
-      </Container>
-    </BrowserRouter>
+    <Container>
+      <Header />
+      <Routes>
+        <Route path={'/'} element={<Homepage />} />
+        <Route path={'/:tableId'} element={<TablePage />} />
+      </Routes>
+    </Container>
   );
 }
 
