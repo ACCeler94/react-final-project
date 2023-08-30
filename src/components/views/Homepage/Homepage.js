@@ -1,5 +1,5 @@
 import React from 'react';
-import TablesList from '../../features/TablesList';
+import TablesList from '../../features/TablesList/TablesList';
 
 const Homepage = () => {
 

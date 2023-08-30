@@ -1,5 +1,6 @@
 // selectors
 export const getAll = ({ tables }) => tables;
+export const getTableById = ({ tables }, id) => tables.find(table => table.id === id);
 
 
 /* action name creator */

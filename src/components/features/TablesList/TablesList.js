@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getAll } from '../../redux/tablesRedux';
+import { getAll } from '../../../redux/tablesRedux';
 import { Link } from 'react-router-dom';
 
 

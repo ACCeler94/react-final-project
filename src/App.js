@@ -5,6 +5,7 @@ import Homepage from './components/views/Homepage/Homepage';
 import { Container } from 'react-bootstrap';
 import Header from './components/layout/Header/Header';
 import { fetchTables } from './redux/tablesRedux';
+import TablePage from './components/views/TablePage/TablePage';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path={'/'} component={Homepage} />
-          <Route exact path={'/:tableId'} component={''} />
+          <Route exact path={'/:tableId'} component={TablePage} />
         </Switch>
       </Container>
     </BrowserRouter>
