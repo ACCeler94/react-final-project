@@ -18,6 +18,10 @@
     {
       "id": "4",
       "status": "Cleaning"
+    },
+    {
+      "id": "5",
+      "status": "Free"
     }
   ]
 }
