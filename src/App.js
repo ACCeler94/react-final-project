@@ -1,26 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Homepage from './components/views/Homepage/Homepage';
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 import Header from './components/layout/Header/Header';
 import { fetchTables } from './redux/tablesRedux';
 import TablePage from './components/views/TablePage/TablePage';
 
 function App() {
+  const [isDataLoaded, setIsDataLoaded] = useState(false)
 
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(fetchTables()), [dispatch])
+  useEffect(() => {
+    dispatch(fetchTables()).then(() => setIsDataLoaded(true));
+  }, [dispatch]);
+
 
 
   return (
     <Container>
       <Header />
-      <Routes>
-        <Route path={'/'} element={<Homepage />} />
-        <Route path={'/:tableId'} element={<TablePage />} />
-      </Routes>
+      {isDataLoaded ? (
+        <Routes>
+          <Route path={'/'} element={<Homepage />} />
+          <Route path={'/:tableId'} element={<TablePage />} />
+        </Routes>
+      ) : (
+        <Spinner />
+      )}
     </Container>
   );
 }

@@ -8,9 +8,10 @@ const TablePage = () => {
 
   const { tableId } = useParams();
   const tableData = useSelector((state) => getTableById(state, tableId));
+  console.log(tableId)
 
 
-  if (!tableData) return <Navigate to="/" />
+  // if (!tableData) return <Navigate to="/" />
 
   return (
     <div className='table-page'>

@@ -15,7 +15,7 @@ export const updateTable = payload => ({ type: UPDATE_TABLE, payload })
 
 export const fetchTables = () => {
   return (dispatch) => {
-    fetch("http://localhost:3131/api/tables")
+    return fetch("http://localhost:3131/api/tables")
       .then(res => res.json())
       .then(table => dispatch(updateTable(table)))
   }
