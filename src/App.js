@@ -8,7 +8,7 @@ import { fetchTables } from './redux/tablesRedux';
 import TablePage from './components/views/TablePage/TablePage';
 
 function App() {
-  const [isDataLoaded, setIsDataLoaded] = useState(false)
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const dispatch = useDispatch();
 

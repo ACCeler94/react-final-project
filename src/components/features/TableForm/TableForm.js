@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TableForm.module.scss';
 import clsx from 'clsx';
+import { useDispatch } from 'react-redux';
+import { fetchUpdateTable } from '../../../redux/tablesRedux';
+import { redirect } from 'react-router-dom';
+
 
 const TableForm = ({ id, status, peopleAmount, maxPeopleAmount, bill }) => {
 
@@ -8,6 +12,8 @@ const TableForm = ({ id, status, peopleAmount, maxPeopleAmount, bill }) => {
   const [peopleCount, setPeopleCount] = useState(peopleAmount ? peopleAmount : '');
   const [maxPeopleCount, setMaxPeopleCount] = useState(maxPeopleAmount ? maxPeopleAmount : '');
   const [billAmount, setBillAmount] = useState(bill ? bill : 0);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (maxPeopleCount && peopleCount > maxPeopleCount) {
@@ -54,8 +60,30 @@ const TableForm = ({ id, status, peopleAmount, maxPeopleAmount, bill }) => {
     }
   }
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    const updatedValues = {};
+
+    // take only values that changed
+    if (tableStatus !== status) {
+      updatedValues.status = tableStatus;
+    };
+    if (peopleCount !== peopleAmount) {
+      updatedValues.peopleAmount = peopleCount;
+    }
+    if (maxPeopleCount !== maxPeopleAmount) {
+      updatedValues.maxPeopleAmount = maxPeopleCount;
+    }
+    if (billAmount !== bill) {
+      updatedValues.bill = billAmount
+    }
+
+    dispatch(fetchUpdateTable(id, updatedValues))
+    redirect('/');
+  }
+
   return (
-    <form className={styles.root} >
+    <form className={styles.root} onSubmit={handleSubmit} >
       <div className={`${styles.tableStatusWrapper} my-3`}>
         <label htmlFor='table-status' className='fw-bold me-3'>Status:</label>
         <select id='table-status' name='table-status' className={styles.select} onChange={statusChangeHandler} defaultValue={tableStatus}>
