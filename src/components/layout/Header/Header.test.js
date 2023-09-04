@@ -1,12 +1,18 @@
+import React from 'react';
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Header from './Header';
 
 
 
-describe('Component Header', () => {
-  it('should render without crashing', () => {
+describe('Header', () => {
+
+
+  it('renders without crashing', () => {
     render(
-      <Header />
-    )
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
   });
 });
