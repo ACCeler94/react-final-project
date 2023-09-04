@@ -34,9 +34,14 @@ const TableForm = ({ id, status, peopleAmount, maxPeopleAmount, bill }) => {
     setBillAmount(0);
   }
 
-  const peopleAmountChangeHandler = e => { // problem with double digit numbers ????
-    const newValue = parseInt(e.target.value, 10);
-    if (newValue < 0 || isNaN(newValue)) {
+  const peopleAmountChangeHandler = e => {
+    let newValue = e.target.value
+    if (newValue) {
+      newValue = parseInt(newValue, 10);
+    } else {
+      newValue = '';
+    }
+    if (newValue < 0) {
       setPeopleCount(0);
     } else {
       setPeopleCount(newValue);
@@ -44,20 +49,29 @@ const TableForm = ({ id, status, peopleAmount, maxPeopleAmount, bill }) => {
   }
 
   const maxPeopleAmountChangeHandler = e => {
-    const newValue = parseInt(e.target.value, 10);
-    if (newValue < 0 || isNaN(newValue)) {
+    let newValue = e.target.value
+    if (newValue) {
+      newValue = parseInt(newValue, 10);
+    } else {
+      newValue = '';
+    }
+    if (newValue < 0) {
       setMaxPeopleCount(0)
     } else if (newValue > 10) {
       setMaxPeopleCount(10)
     } else {
       setMaxPeopleCount(newValue);
     }
-    console.log(typeof newValue)
   };
 
   const billAmountChangeHandler = e => {
-    const newValue = parseInt(e.target.value, 10);
-    if (newValue < 0 || isNaN(newValue)) {
+    let newValue = e.target.value
+    if (newValue) {
+      newValue = parseInt(newValue, 10);
+    } else {
+      newValue = '';
+    }
+    if (newValue < 0) {
       setBillAmount(0);
     } else {
       setBillAmount(newValue);
@@ -95,7 +109,7 @@ const TableForm = ({ id, status, peopleAmount, maxPeopleAmount, bill }) => {
       updatedValues.bill = billAmount
     }
 
-    dispatch(fetchUpdateTable(id, updatedValues)).then(navigate('/'))
+    dispatch(fetchUpdateTable(id, updatedValues)).then(navigate('/'));
   }
 
   return (
