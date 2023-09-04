@@ -19,7 +19,7 @@ export const fetchTables = () => {
   return (dispatch) => {
     return fetch("http://localhost:3131/api/tables")
       .then(res => res.json())
-      .then(table => dispatch(setTable(table))) // to do - redirect to homepage after successful fetch  + validate form
+      .then(table => dispatch(setTable(table)));
   }
 }
 
